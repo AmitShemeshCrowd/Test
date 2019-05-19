@@ -13,7 +13,7 @@ node {
 			  docker tag test:${env.BUILD_ID} amitshemeshcrowd/test:${env.BUILD_ID}
 			  docker tag amitshemeshcrowd/test:${env.BUILD_ID} amitshemeshcrowd/test:latest
 
-			  docker push push amitshemeshcrowd/test:${env.BUILD_ID}
+			  docker push amitshemeshcrowd/test:${env.BUILD_ID}
 			"""
 		}
    }
