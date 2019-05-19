@@ -8,14 +8,19 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+MongoURI=process.env.MONGO_URI;
+MongoDB=process.env.MONGO_DB;
+console.log("###mongodb://"+MongoURI+":27017/"+MongoDB)
+serverPort= process.env.LISTEN_PORT;
 // Connect to MongoDB
 mongoose
   .connect(
-    'mongodb://mongo:27017/docker-node-mongo',
+    "mongodb://"+MongoURI+":27017/"+MongoDB,
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  .catch(err =>  console.log(err));
 
 const Item = require('./models/Item');
 
@@ -33,6 +38,5 @@ app.post('/item/add', (req, res) => {
   newItem.save().then(item => res.redirect('/'));
 });
 
-const port = 3000;
 
-app.listen(port, () => console.log('Server running...'));
+app.listen(serverPort, () => console.log('Server running...'));
